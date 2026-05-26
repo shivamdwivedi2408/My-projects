@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Turtle Art</title>
+
+  <style>
+    body{
+      margin:0;
+      overflow:hidden;
+      background:black;
+    }
+
+    canvas{
+      display:block;
+    }
+
+    h1{
+      position:absolute;
+      top:20px;
+      width:100%;
+      text-align:center;
+      color:white;
+      font-family:Arial;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Python Turtle Art using HTML Canvas</h1>
+
+<canvas id="canvas"></canvas>
+
+<script>
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+ctx.translate(canvas.width/2, canvas.height/2);
+
+let angle = 0;
+let hue = 0;
+
+function draw(){
+
+    ctx.strokeStyle = `hsl(${hue},100%,50%)`;
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+
+    let radius = angle * 0.4;
+
+    let x = radius * Math.cos(angle);
+    let y = radius * Math.sin(angle);
+
+    ctx.lineTo(x,y);
+    ctx.stroke();
+
+    angle += 0.1;
+    hue += 1;
+
+    ctx.rotate(0.01);
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+
+</script>
+
+</body>
+</html>
